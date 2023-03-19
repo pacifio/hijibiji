@@ -43,6 +43,14 @@ function BlockEditor() {
                       kind: "block",
                       type: "createCanvas",
                     },
+                    {
+                      kind: "block",
+                      type: "setup",
+                    },
+                    {
+                      kind: "block",
+                      type: "draw",
+                    },
                   ],
                 },
                 {

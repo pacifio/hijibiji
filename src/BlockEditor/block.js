@@ -15,3 +15,28 @@ Blockly.Blocks["createCanvas"] = {
     this.setHelpUrl("");
   },
 };
+
+Blockly.Blocks["setup"] = {
+  init: function () {
+    this.appendDummyInput().appendField("সেটআপ");
+    this.appendStatementInput("do").setCheck(null).appendField("চলবে");
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip("স্কেচ শুরু হওয়ার সময় শুধুমাত্র একবার কল হয়");
+    this.setHelpUrl("https://p5js.org/reference/#/p5/setup");
+  },
+};
+
+Blockly.Blocks["draw"] = {
+  init: function () {
+    this.appendDummyInput().appendField("ড্রয়িং");
+    this.appendStatementInput("do").setCheck(null).appendField("চলবে");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
