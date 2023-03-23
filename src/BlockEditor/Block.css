@@ -1,3 +1,4 @@
 .view-full {
-  height: calc(100vh - 114px);
+  height: calc(100vh - 124px);
+  margin-top: 8px;
 }

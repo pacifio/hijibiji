@@ -1,21 +1,5 @@
 import Blockly from "blockly";
 
-Blockly.Blocks["createCanvas"] = {
-  init: function () {
-    this.appendDummyInput().appendField("ক্যানভাস");
-    this.appendValueInput("width").setCheck("Number").appendField("দৈর্ঘ্য");
-    this.appendValueInput("height").setCheck("Number").appendField("প্রস্থ");
-    this.appendValueInput("canvas")
-      .setCheck("String")
-      .appendField("ক্যানভাসের নাম");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(230);
-    this.setTooltip("");
-    this.setHelpUrl("");
-  },
-};
-
 Blockly.Blocks["setup"] = {
   init: function () {
     this.appendDummyInput().appendField("সেটআপ");
@@ -38,5 +22,67 @@ Blockly.Blocks["draw"] = {
     this.setColour(230);
     this.setTooltip("");
     this.setHelpUrl("");
+  },
+};
+
+Blockly.Blocks["ellipse"] = {
+  init: function () {
+    this.appendDummyInput().appendField("বৃত্ত");
+    this.appendValueInput("x")
+      .setCheck("Number")
+      .appendField("এক্স (x) এক্সিস");
+    this.appendValueInput("y").setCheck("Number").appendField("য় (y) এক্সিস");
+    this.appendValueInput("width").setCheck("Number").appendField("দৈর্ঘ্য");
+    this.appendValueInput("height").setCheck("Number").appendField("প্রস্থ");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(165);
+    this.setTooltip("একটি বৃত্ত একী");
+    this.setHelpUrl("https://p5js.org/reference/#/p5/ellipse");
+  },
+};
+
+Blockly.Blocks["rect"] = {
+  init: function () {
+    this.appendDummyInput().appendField("চতুর্ভুজ");
+    this.appendValueInput("x")
+      .setCheck("Number")
+      .appendField("এক্স (x) এক্সিস");
+    this.appendValueInput("y").setCheck("Number").appendField("য় (y) এক্সিস");
+    this.appendValueInput("width").setCheck("Number").appendField("দৈর্ঘ্য");
+    this.appendValueInput("height").setCheck("Number").appendField("প্রস্থ");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(165);
+    this.setTooltip("একটি চতুর্ভুজ একী");
+    this.setHelpUrl("https://p5js.org/reference/#/p5/rect");
+  },
+};
+
+Blockly.Blocks["background"] = {
+  init: function () {
+    this.appendDummyInput().appendField("ব্যাকগ্রাউন্ড");
+    this.appendValueInput("NAME").setCheck("Number").appendField("রং");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(0);
+    this.setTooltip("ব্যাকগ্রাউন্ড কালার সেট করি");
+    this.setHelpUrl("https://p5js.org/reference/#/p5/background");
+  },
+};
+
+Blockly.Blocks["fill"] = {
+  init: function () {
+    this.appendDummyInput().appendField("ফিল");
+    this.appendValueInput("NAME").setCheck("Number").appendField("রং");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(0);
+    this.setTooltip("");
+    this.setHelpUrl("https://p5js.org/reference/#/p5/fill");
   },
 };
