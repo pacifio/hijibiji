@@ -25,6 +25,67 @@ Blockly.Blocks["draw"] = {
   },
 };
 
+Blockly.Blocks["noStroke"] = {
+  init: function () {
+    this.appendDummyInput().appendField("কোন স্ট্রোক থাকবে না");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+Blockly.Blocks["translate"] = {
+  init: function () {
+    this.appendDummyInput().appendField("ট্রান্সলেট");
+    this.appendValueInput("x")
+      .setCheck("Number")
+      .appendField("এক্স (x) এক্সিস");
+    this.appendValueInput("y").setCheck("Number").appendField("য় (y) এক্সিস");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(165);
+    this.setTooltip("একটি বৃত্ত আঁকি");
+    this.setHelpUrl("https://p5js.org/reference/#/p5/translate");
+  },
+};
+
+Blockly.Blocks["rotate"] = {
+  init: function () {
+    this.appendDummyInput().appendField("রোটেট");
+    this.appendValueInput("angle").setCheck("Number").appendField("অ্যাংগেল");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(165);
+    this.setTooltip("একটি বৃত্ত আঁকি");
+    this.setHelpUrl("https://p5js.org/reference/#/p5/rotate");
+  },
+};
+
+Blockly.Blocks["width"] = {
+  init: function () {
+    this.appendDummyInput().appendField("ক্যানভাসের দৈর্ঘ্য");
+    this.setOutput(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+Blockly.Blocks["height"] = {
+  init: function () {
+    this.appendDummyInput().appendField("ক্যানভাসের প্রস্থ");
+    this.setOutput(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
 Blockly.Blocks["mouseX"] = {
   init: function () {
     this.appendDummyInput().appendField("মাউস এক্স(x) এক্সিস");
@@ -58,7 +119,7 @@ Blockly.Blocks["ellipse"] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(165);
-    this.setTooltip("একটি বৃত্ত একী");
+    this.setTooltip("একটি বৃত্ত আঁকি");
     this.setHelpUrl("https://p5js.org/reference/#/p5/ellipse");
   },
 };
@@ -76,8 +137,26 @@ Blockly.Blocks["rect"] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(165);
-    this.setTooltip("একটি চতুর্ভুজ একী");
+    this.setTooltip("একটি চতুর্ভুজ আঁকি");
     this.setHelpUrl("https://p5js.org/reference/#/p5/rect");
+  },
+};
+
+Blockly.Blocks["triangle"] = {
+  init: function () {
+    this.appendDummyInput().appendField("ত্রিভুজ");
+    this.appendValueInput("x1").setCheck("Number").appendField("এক্স ১");
+    this.appendValueInput("y1").setCheck("Number").appendField("য় ১");
+    this.appendValueInput("x2").setCheck("Number").appendField("এক্স ২");
+    this.appendValueInput("y2").setCheck("Number").appendField("য় ২");
+    this.appendValueInput("x3").setCheck("Number").appendField("এক্স ৩");
+    this.appendValueInput("y3").setCheck("Number").appendField("য় ৩");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(165);
+    this.setTooltip("একটি ত্রিভুজ আঁকি");
+    this.setHelpUrl("https://p5js.org/reference/#/p5/triangle");
   },
 };
 

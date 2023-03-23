@@ -134,6 +134,33 @@ function BlockEditor() {
                     },
                     {
                       kind: "category",
+                      name: "ক্যানভাস ফাংশন",
+                      colour: "#845EF7",
+                      contents: [
+                        {
+                          kind: "block",
+                          type: "noStroke",
+                        },
+                        {
+                          kind: "block",
+                          type: "translate",
+                        },
+                        {
+                          kind: "block",
+                          type: "rotate",
+                        },
+                        {
+                          kind: "block",
+                          type: "width",
+                        },
+                        {
+                          kind: "block",
+                          type: "height",
+                        },
+                      ],
+                    },
+                    {
+                      kind: "category",
                       name: "ইনপুট",
                       colour: "#15AABF",
                       contents: [
@@ -159,6 +186,10 @@ function BlockEditor() {
                         {
                           kind: "block",
                           type: "rect",
+                        },
+                        {
+                          kind: "block",
+                          type: "triangle",
                         },
                       ],
                     },
@@ -247,6 +278,10 @@ function BlockEditor() {
                         {
                           kind: "block",
                           type: "math_number",
+                        },
+                        {
+                          kind: "block",
+                          type: "math_arithmetic",
                         },
                         {
                           kind: "block",
@@ -341,6 +376,18 @@ function BlockEditor() {
                           type: "text_prompt_ext",
                         },
                       ],
+                    },
+                    {
+                      kind: "category",
+                      name: "ভ্যারিয়েবলস",
+                      colour: "%{BKY_VARIABLES_HUE}",
+                      custom: "VARIABLE",
+                    },
+                    {
+                      kind: "category",
+                      name: "ফাংশন",
+                      colour: "%{BKY_PROCEDURES_HUE}",
+                      custom: "PROCEDURE",
                     },
                   ],
                 }}
