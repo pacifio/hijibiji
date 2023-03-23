@@ -13,6 +13,16 @@ Blockly.JavaScript["draw"] = function (block) {
   return code;
 };
 
+Blockly.JavaScript["mouseX"] = function (block) {
+  let code = "p5.mouseX";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript["mouseY"] = function (block) {
+  let code = "p5.mouseY";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript["ellipse"] = function (block) {
   let value_x = Blockly.JavaScript.valueToCode(
     block,

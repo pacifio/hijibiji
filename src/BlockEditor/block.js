@@ -25,6 +25,26 @@ Blockly.Blocks["draw"] = {
   },
 };
 
+Blockly.Blocks["mouseX"] = {
+  init: function () {
+    this.appendDummyInput().appendField("মাউস এক্স(x) এক্সিস");
+    this.setOutput(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+Blockly.Blocks["mouseY"] = {
+  init: function () {
+    this.appendDummyInput().appendField("মাউস য়(y) এক্সিস");
+    this.setOutput(true, "Number");
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
 Blockly.Blocks["ellipse"] = {
   init: function () {
     this.appendDummyInput().appendField("বৃত্ত");
@@ -64,7 +84,7 @@ Blockly.Blocks["rect"] = {
 Blockly.Blocks["background"] = {
   init: function () {
     this.appendDummyInput().appendField("ব্যাকগ্রাউন্ড");
-    this.appendValueInput("NAME").setCheck("Number").appendField("রং");
+    this.appendValueInput("NAME").setCheck("String").appendField("রং");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -77,7 +97,7 @@ Blockly.Blocks["background"] = {
 Blockly.Blocks["fill"] = {
   init: function () {
     this.appendDummyInput().appendField("ফিল");
-    this.appendValueInput("NAME").setCheck("Number").appendField("রং");
+    this.appendValueInput("NAME").setCheck("String").appendField("রং");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);

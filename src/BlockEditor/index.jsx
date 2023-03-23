@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-new-func */
 
 import "./block";
@@ -34,8 +35,6 @@ import { showNotification } from "@mantine/notifications";
 function BlockEditor() {
   let workspace;
 
-  const [sketch, setSketch] = useState();
-
   const [code, setCode] = useState("");
   const [activeTab, setActiveTab] = useState("block");
   const { ref, width, height } = useElementSize();
@@ -52,18 +51,10 @@ function BlockEditor() {
     }
   }, [workspace, width, height]);
 
-  const runCode = () => {
-    genCode();
-    if (code.length > 0) {
-      setSketch(code);
-    }
-  };
-
   useEffect(() => {
     if (activeTab === "script") {
       genCode();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTab]);
 
   return (
@@ -95,7 +86,7 @@ function BlockEditor() {
                   </ThemeIcon>
                 }
                 radius="xl"
-                onClick={runCode}
+                onClick={genCode}
               >
                 রান কোড
               </Button>
@@ -125,6 +116,7 @@ function BlockEditor() {
                     {
                       kind: "category",
                       name: "স্ট্রাকচার",
+                      colour: "#E64980",
                       contents: [
                         {
                           kind: "block",
@@ -134,11 +126,31 @@ function BlockEditor() {
                           kind: "block",
                           type: "draw",
                         },
+                        {
+                          kind: "block",
+                          type: "draw",
+                        },
+                      ],
+                    },
+                    {
+                      kind: "category",
+                      name: "ইনপুট",
+                      colour: "#15AABF",
+                      contents: [
+                        {
+                          kind: "block",
+                          type: "mouseX",
+                        },
+                        {
+                          kind: "block",
+                          type: "mouseY",
+                        },
                       ],
                     },
                     {
                       kind: "category",
                       name: "জ্যামিতি",
+                      colour: "#37B24D",
                       contents: [
                         {
                           kind: "block",
@@ -153,6 +165,7 @@ function BlockEditor() {
                     {
                       kind: "category",
                       name: "রং",
+                      colour: "#FAB005",
                       contents: [
                         {
                           kind: "block",
@@ -161,22 +174,6 @@ function BlockEditor() {
                         {
                           kind: "block",
                           type: "fill",
-                        },
-                        {
-                          kind: "block",
-                          type: "colour_picker",
-                        },
-                        {
-                          kind: "block",
-                          type: "colour_random",
-                        },
-                        {
-                          kind: "block",
-                          type: "colour_rgb",
-                        },
-                        {
-                          kind: "block",
-                          type: "colour_blend",
                         },
                       ],
                     },
@@ -289,6 +286,62 @@ function BlockEditor() {
                         },
                       ],
                     },
+                    {
+                      kind: "category",
+                      name: "টেক্সট বা লিখা",
+                      colour: "%{BKY_TEXTS_HUE}",
+                      contents: [
+                        {
+                          kind: "block",
+                          type: "text",
+                        },
+                        {
+                          kind: "block",
+                          type: "text_length",
+                        },
+                        {
+                          kind: "block",
+                          type: "text_join",
+                        },
+                        {
+                          kind: "block",
+                          type: "text_append",
+                        },
+                        {
+                          kind: "block",
+                          type: "text_length",
+                        },
+                        {
+                          kind: "block",
+                          type: "text_indexOf",
+                        },
+
+                        {
+                          kind: "block",
+                          type: "text_charAt",
+                        },
+                        {
+                          kind: "block",
+                          type: "text_getSubstring",
+                        },
+                        {
+                          kind: "block",
+                          type: "text_changeCase",
+                        },
+                        {
+                          kind: "block",
+                          type: "text_trim",
+                        },
+                        {
+                          kind: "block",
+                          type: "text_print",
+                        },
+                        {
+                          kind: "block",
+                          type: "text_prompt_ext",
+                        },
+                      ],
+                    },
                   ],
                 }}
               />
@@ -304,7 +357,7 @@ function BlockEditor() {
           </Tabs>
         </Grid.Col>
         <Grid.Col span={6}>
-          <Preview sketch={sketch} sizeRef={ref} />
+          <Preview sketch={code} sizeRef={ref} />
         </Grid.Col>
       </Grid>
     </Box>
@@ -333,15 +386,21 @@ function Preview({ sketch, sizeRef }) {
   }, [sketch]);
 
   return (
-    <Box ref={sizeRef} w="100%" h="100%">
+    <Paper withBorder ref={sizeRef} w="100%" h="100%" radius={0}>
       {sketch ? (
-        <div h="100%" ref={p5Container}></div>
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+          }}
+          ref={p5Container}
+        ></div>
       ) : (
         <Center h="100%">
           <Text>স্কেচ দেখতে কোড রান করুন</Text>
         </Center>
       )}
-    </Box>
+    </Paper>
   );
 }
 
