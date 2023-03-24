@@ -66,6 +66,32 @@ Blockly.Blocks["rotate"] = {
   },
 };
 
+Blockly.Blocks["stroke"] = {
+  init: function () {
+    this.appendDummyInput().appendField("স্ট্রোক");
+    this.appendValueInput("colour").setCheck("Colour").appendField("রং");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(165);
+    this.setTooltip("একটি বৃত্ত আঁকি");
+    this.setHelpUrl("https://p5js.org/reference/#/p5/rotate");
+  },
+};
+
+Blockly.Blocks["strokeWeight"] = {
+  init: function () {
+    this.appendDummyInput().appendField("স্ট্রোকের ঘনত্ব");
+    this.appendValueInput("x").setCheck("Number").appendField("ঘনত্বের পরিমাণ");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(165);
+    this.setTooltip("একটি বৃত্ত আঁকি");
+    this.setHelpUrl("https://p5js.org/reference/#/p5/rotate");
+  },
+};
+
 Blockly.Blocks["width"] = {
   init: function () {
     this.appendDummyInput().appendField("ক্যানভাসের দৈর্ঘ্য");
@@ -163,7 +189,7 @@ Blockly.Blocks["triangle"] = {
 Blockly.Blocks["background"] = {
   init: function () {
     this.appendDummyInput().appendField("ব্যাকগ্রাউন্ড");
-    this.appendValueInput("NAME").setCheck("String").appendField("রং");
+    this.appendValueInput("NAME").setCheck("Colour").appendField("রং");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -176,7 +202,7 @@ Blockly.Blocks["background"] = {
 Blockly.Blocks["fill"] = {
   init: function () {
     this.appendDummyInput().appendField("ফিল");
-    this.appendValueInput("NAME").setCheck("String").appendField("রং");
+    this.appendValueInput("NAME").setCheck("Colour").appendField("রং");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);

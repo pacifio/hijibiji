@@ -19,7 +19,11 @@ export default function Navbar() {
           <div className="gradient-border">হিজিবিজি</div>
         </Group>
         <Group position="right">
-          <Tooltip label="জাভাস্ক্রিপ্ট শিখো" position="bottom" withArrow>
+          <Tooltip
+            label="ফুলস্ক্রিন কর অথবা মিনিমাইয কর"
+            position="bottom"
+            withArrow
+          >
             <ActionIcon onClick={toggle}>
               {fullscreen ? <IconMinimize /> : <IconMaximize />}
             </ActionIcon>

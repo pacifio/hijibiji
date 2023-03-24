@@ -4,8 +4,8 @@ const INIT_XML = (w, h) => `
     <statement name="do">
       <block type="background">
         <value name="NAME">
-          <block type="text">
-            <field name="TEXT">#1a1a1e</field>
+          <block type="colour_picker">
+            <field name="COLOUR">#1a1a1e</field>
           </block>
         </value>
       </block>
@@ -15,8 +15,8 @@ const INIT_XML = (w, h) => `
         <statement name="do">
           <block type="fill">
             <value name="NAME">
-              <block type="text">
-                <field name="TEXT">#ffffff</field>
+              <block type="colour_picker">
+                <field name="COLOUR">#ffffff</field>
               </block>
             </value>
             <next>

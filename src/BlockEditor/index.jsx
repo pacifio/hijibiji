@@ -19,6 +19,7 @@ import {
 import { BlocklyWorkspace } from "react-blockly";
 import Blockly from "blockly";
 import {
+  IconBook,
   IconCode,
   IconLayout2,
   IconPlayerPlayFilled,
@@ -75,6 +76,9 @@ function BlockEditor() {
                 </Tabs.Tab>
                 <Tabs.Tab value="script" icon={<IconCode size="0.8rem" />}>
                   স্ক্রিপ্ট
+                </Tabs.Tab>
+                <Tabs.Tab value="tutorial" icon={<IconBook size="0.8rem" />}>
+                  টিউটরিয়াল
                 </Tabs.Tab>
               </Tabs.List>
               <Button
@@ -143,6 +147,14 @@ function BlockEditor() {
                         },
                         {
                           kind: "block",
+                          type: "stroke",
+                        },
+                        {
+                          kind: "block",
+                          type: "strokeWeight",
+                        },
+                        {
+                          kind: "block",
                           type: "translate",
                         },
                         {
@@ -205,6 +217,18 @@ function BlockEditor() {
                         {
                           kind: "block",
                           type: "fill",
+                        },
+                        {
+                          kind: "block",
+                          type: "colour_picker",
+                        },
+                        {
+                          kind: "block",
+                          type: "colour_random",
+                        },
+                        {
+                          kind: "block",
+                          type: "colour_rgb",
                         },
                       ],
                     },
@@ -400,6 +424,12 @@ function BlockEditor() {
                   {code}
                 </Prism>
               </Paper>
+            </Tabs.Panel>
+
+            <Tabs.Panel value="tutorial" className="view-full">
+              <Text color="dimmed" weight="bold">
+                টিউটরিয়াল আসছে !
+              </Text>
             </Tabs.Panel>
           </Tabs>
         </Grid.Col>

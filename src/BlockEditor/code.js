@@ -45,6 +45,28 @@ Blockly.JavaScript["rotate"] = function (block) {
   return code;
 };
 
+Blockly.JavaScript["stroke"] = function (block) {
+  let value_colour = Blockly.JavaScript.valueToCode(
+    block,
+    "colour",
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+
+  let code = "p5.stroke(" + value_colour + ");\n";
+  return code;
+};
+
+Blockly.JavaScript["strokeWeight"] = function (block) {
+  let value_x = Blockly.JavaScript.valueToCode(
+    block,
+    "x",
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+
+  let code = "p5.strokeWeight(" + value_x + ");\n";
+  return code;
+};
+
 Blockly.JavaScript["width"] = function (block) {
   let code = "p5.width";
   return [code, Blockly.JavaScript.ORDER_NONE];
