@@ -13,6 +13,18 @@ Blockly.JavaScript["draw"] = function (block) {
   return code;
 };
 
+Blockly.JavaScript["mousePressed"] = function (block) {
+  let statements_do = Blockly.JavaScript.statementToCode(block, "do");
+  let code = "p5.mousePressed = () => {\n" + statements_do + "};\n";
+  return code;
+};
+
+Blockly.JavaScript["keyPressed"] = function (block) {
+  let statements_do = Blockly.JavaScript.statementToCode(block, "do");
+  let code = "p5.keyPressed = () => {\n" + statements_do + "};\n";
+  return code;
+};
+
 Blockly.JavaScript["noStroke"] = function (block) {
   let code = "p5.noStroke();\n";
   return code;
@@ -84,6 +96,81 @@ Blockly.JavaScript["mouseX"] = function (block) {
 
 Blockly.JavaScript["mouseY"] = function (block) {
   let code = "p5.mouseY";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript["keyCode"] = function (block) {
+  let code = "p5.keyCode";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript["key_backspace"] = function (block) {
+  let code = "p5.BACKSPACE";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript["key_delete"] = function (block) {
+  let code = "p5.DELETE";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript["key_enter"] = function (block) {
+  let code = "p5.ENTER";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript["key_return"] = function (block) {
+  let code = "p5.RETURN";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript["key_tab"] = function (block) {
+  let code = "p5.TAB";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript["key_esc"] = function (block) {
+  let code = "p5.ESCAPE";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript["key_shift"] = function (block) {
+  let code = "p5.SHIFT";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript["key_ctrl"] = function (block) {
+  let code = "p5.CONTROL";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript["key_option"] = function (block) {
+  let code = "p5.OPTION";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript["key_alt"] = function (block) {
+  let code = "p5.ALT";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript["key_up"] = function (block) {
+  let code = "p5.UP_ARROW";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript["key_down"] = function (block) {
+  let code = "p5.DOWN_ARROW";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript["key_left"] = function (block) {
+  let code = "p5.LEFT_ARROW";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript["key_right"] = function (block) {
+  let code = "p5.RIGHT_ARROW";
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 

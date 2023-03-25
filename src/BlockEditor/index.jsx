@@ -184,6 +184,74 @@ function BlockEditor() {
                           kind: "block",
                           type: "mouseY",
                         },
+                        {
+                          kind: "block",
+                          type: "mousePressed",
+                        },
+                        {
+                          kind: "block",
+                          type: "keyPressed",
+                        },
+                        {
+                          kind: "block",
+                          type: "keyCode",
+                        },
+                        {
+                          kind: "block",
+                          type: "key_backspace",
+                        },
+                        {
+                          kind: "block",
+                          type: "key_delete",
+                        },
+                        {
+                          kind: "block",
+                          type: "key_enter",
+                        },
+                        {
+                          kind: "block",
+                          type: "key_return",
+                        },
+                        {
+                          kind: "block",
+                          type: "key_tab",
+                        },
+                        {
+                          kind: "block",
+                          type: "key_esc",
+                        },
+                        {
+                          kind: "block",
+                          type: "key_shift",
+                        },
+                        {
+                          kind: "block",
+                          type: "key_ctrl",
+                        },
+                        {
+                          kind: "block",
+                          type: "key_option",
+                        },
+                        {
+                          kind: "block",
+                          type: "key_alt",
+                        },
+                        {
+                          kind: "block",
+                          type: "key_up",
+                        },
+                        {
+                          kind: "block",
+                          type: "key_down",
+                        },
+                        {
+                          kind: "block",
+                          type: "key_left",
+                        },
+                        {
+                          kind: "block",
+                          type: "key_right",
+                        },
                       ],
                     },
                     {

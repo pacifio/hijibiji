@@ -132,6 +132,182 @@ Blockly.Blocks["mouseY"] = {
   },
 };
 
+Blockly.Blocks["mousePressed"] = {
+  init: function () {
+    this.appendDummyInput().appendField("মাউস ধরে রাখলে");
+    this.appendStatementInput("do").setCheck(null).appendField("চলবে");
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip("মাউস চাপ দিলে কোড চলবে");
+    this.setHelpUrl("https://p5js.org/reference/#/p5/mousePressed");
+  },
+};
+
+Blockly.Blocks["keyPressed"] = {
+  init: function () {
+    this.appendDummyInput().appendField("কিবোর্ড চাপলে");
+    this.appendStatementInput("do").setCheck(null).appendField("চলবে");
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip("কিবোর্ডে কী চাপ দিলে কোড চলবে");
+    this.setHelpUrl("https://p5js.org/reference/#/p5/keyPressed");
+  },
+};
+
+Blockly.Blocks["keyCode"] = {
+  init: function () {
+    this.appendDummyInput().appendField("বর্তমান কী");
+    this.setOutput(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+Blockly.Blocks["key_backspace"] = {
+  init: function () {
+    this.appendDummyInput().appendField("ব্যাকস্পেস কী (backspace)");
+    this.setOutput(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+Blockly.Blocks["key_delete"] = {
+  init: function () {
+    this.appendDummyInput().appendField("ডিলিট কী (delete)");
+    this.setOutput(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+Blockly.Blocks["key_enter"] = {
+  init: function () {
+    this.appendDummyInput().appendField("এন্টার কী (enter)");
+    this.setOutput(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+Blockly.Blocks["key_return"] = {
+  init: function () {
+    this.appendDummyInput().appendField("রিটার্ন কী (return)");
+    this.setOutput(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+Blockly.Blocks["key_tab"] = {
+  init: function () {
+    this.appendDummyInput().appendField("ট্যাব কী (tab)");
+    this.setOutput(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+Blockly.Blocks["key_esc"] = {
+  init: function () {
+    this.appendDummyInput().appendField("এস্কেপ কী (esc)");
+    this.setOutput(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+Blockly.Blocks["key_shift"] = {
+  init: function () {
+    this.appendDummyInput().appendField("শিফট কী (shift)");
+    this.setOutput(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+Blockly.Blocks["key_ctrl"] = {
+  init: function () {
+    this.appendDummyInput().appendField("কন্ট্রোল কী (ctrl)");
+    this.setOutput(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+Blockly.Blocks["key_option"] = {
+  init: function () {
+    this.appendDummyInput().appendField("অপশন কী (option)");
+    this.setOutput(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+Blockly.Blocks["key_alt"] = {
+  init: function () {
+    this.appendDummyInput().appendField("ওলট কী (alt)");
+    this.setOutput(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+Blockly.Blocks["key_up"] = {
+  init: function () {
+    this.appendDummyInput().appendField("আপ অ্যারো কী (up)");
+    this.setOutput(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+Blockly.Blocks["key_down"] = {
+  init: function () {
+    this.appendDummyInput().appendField("ডাউন অ্যারো কী কী (down)");
+    this.setOutput(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+Blockly.Blocks["key_left"] = {
+  init: function () {
+    this.appendDummyInput().appendField("লেফট অ্যারো কী (left)");
+    this.setOutput(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+Blockly.Blocks["key_right"] = {
+  init: function () {
+    this.appendDummyInput().appendField("রাইট অ্যারো কী (right)");
+    this.setOutput(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
 Blockly.Blocks["ellipse"] = {
   init: function () {
     this.appendDummyInput().appendField("বৃত্ত");
