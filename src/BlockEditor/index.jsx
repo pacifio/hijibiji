@@ -15,26 +15,71 @@ import {
   Tabs,
   ThemeIcon,
   Text,
+  CopyButton,
+  Textarea,
 } from "@mantine/core";
 import { BlocklyWorkspace } from "react-blockly";
 import Blockly from "blockly";
 import {
   IconBook,
+  IconCheck,
   IconCode,
+  IconEdit,
+  IconFile,
+  IconFileImport,
   IconLayout2,
   IconPlayerPlayFilled,
+  IconShare,
   IconX,
 } from "@tabler/icons-react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 import { Prism } from "@mantine/prism";
 
-import INIT_XML from "./xml";
+import loadInitXml from "./xml";
 import { useElementSize } from "@mantine/hooks";
 import p5 from "p5";
 import { showNotification } from "@mantine/notifications";
+import { openConfirmModal, openModal } from "@mantine/modals";
+
+function success(title) {
+  showNotification({
+    title,
+    color: "green",
+    icon: <IconCheck />,
+  });
+}
+
+const CodeImporter = forwardRef((props, ref) => {
+  const [xml, setXml] = useState("");
+
+  useImperativeHandle(ref, () => ({
+    getInput() {
+      return xml;
+    },
+  }));
+
+  return (
+    <Textarea
+      placeholder="শেয়ার কোড"
+      size="sm"
+      value={xml}
+      onChange={(event) => setXml(event.currentTarget.value)}
+    />
+  );
+});
 
 function BlockEditor() {
   let workspace;
+  let xml = loadInitXml();
+
+  const xmlImporter = useRef();
 
   const [code, setCode] = useState("");
   const [activeTab, setActiveTab] = useState("block");
@@ -81,26 +126,135 @@ function BlockEditor() {
                   টিউটরিয়াল
                 </Tabs.Tab>
               </Tabs.List>
-              <Button
-                variant="subtle"
-                size="xs"
-                leftIcon={
-                  <ThemeIcon color="green" variant="light" radius="xl">
-                    <IconPlayerPlayFilled size={12} />
-                  </ThemeIcon>
-                }
-                radius="xl"
-                onClick={genCode}
-              >
-                রান কোড
-              </Button>
+              <Button.Group>
+                <Button
+                  color="pink"
+                  variant="subtle"
+                  size="xs"
+                  leftIcon={
+                    <ThemeIcon color="pink" variant="light" radius="xl">
+                      <IconFileImport size={12} />
+                    </ThemeIcon>
+                  }
+                  radius="xl"
+                  onClick={() => {
+                    openConfirmModal({
+                      title: "কোড ইমপোর্টার টুল",
+                      children: <CodeImporter ref={xmlImporter} />,
+                      padding: "xs",
+                      centered: true,
+                      size: "md",
+                      overlayOpacity: 0.55,
+                      overlayBlur: 3,
+                      labels: { confirm: "ইমপোর্ট", cancel: "বাতিল" },
+                      onConfirm: () => {
+                        if (xmlImporter.current) {
+                          const code = xmlImporter.current.getInput();
+                          if (code) {
+                            const parser = new DOMParser();
+                            const parsed = parser.parseFromString(
+                              code,
+                              "text/xml"
+                            );
+                            if (workspace) {
+                              workspace.clear();
+                              Blockly.Xml.domToWorkspace(
+                                parsed.documentElement,
+                                workspace
+                              );
+                            }
+                          }
+                        }
+                      },
+                    });
+                  }}
+                >
+                  ইমপোর্ট
+                </Button>
+                <Button
+                  color="violet"
+                  variant="subtle"
+                  size="xs"
+                  leftIcon={
+                    <ThemeIcon color="violet" variant="light" radius="xl">
+                      <IconFile size={12} />
+                    </ThemeIcon>
+                  }
+                  radius="xl"
+                  onClick={() => {
+                    if (xml) {
+                    }
+                  }}
+                >
+                  ফাইল সেভ
+                </Button>
+                <Button
+                  color="blue"
+                  variant="subtle"
+                  size="xs"
+                  leftIcon={
+                    <ThemeIcon color="blue" variant="light" radius="xl">
+                      <IconEdit size={12} />
+                    </ThemeIcon>
+                  }
+                  radius="xl"
+                  onClick={() => {
+                    if (xml) {
+                      localStorage.setItem("xml", xml);
+                      success("কোড সেভ হয়েছে");
+                    }
+                  }}
+                >
+                  এডিটর সেভ
+                </Button>
+                <CopyButton value={xml}>
+                  {({ copied, copy }) => (
+                    <Button
+                      color="cyan"
+                      variant="subtle"
+                      size="xs"
+                      leftIcon={
+                        <ThemeIcon color="cyan" variant="light" radius="xl">
+                          {copied ? (
+                            <IconCheck size={12} />
+                          ) : (
+                            <IconShare size={12} />
+                          )}
+                        </ThemeIcon>
+                      }
+                      radius="xl"
+                      onClick={() => {
+                        copy();
+                        success("শেয়ার কোড কপি হয়েছে");
+                      }}
+                    >
+                      শেয়ার
+                    </Button>
+                  )}
+                </CopyButton>
+                <Button
+                  color="green"
+                  variant="subtle"
+                  size="xs"
+                  leftIcon={
+                    <ThemeIcon color="green" variant="light" radius="xl">
+                      <IconPlayerPlayFilled size={12} />
+                    </ThemeIcon>
+                  }
+                  radius="xl"
+                  onClick={genCode}
+                >
+                  রান কোড
+                </Button>
+              </Button.Group>
             </Group>
 
             <Tabs.Panel value="block">
               <BlocklyWorkspace
                 className="view-full"
                 onWorkspaceChange={(w) => (workspace = w)}
-                initialXml={INIT_XML(width, height)}
+                initialXml={xml}
+                onXmlChange={(x) => (xml = x)}
                 workspaceConfiguration={{
                   grid: {
                     spacing: 20,
@@ -125,10 +279,6 @@ function BlockEditor() {
                         {
                           kind: "block",
                           type: "setup",
-                        },
-                        {
-                          kind: "block",
-                          type: "draw",
                         },
                         {
                           kind: "block",
@@ -163,6 +313,18 @@ function BlockEditor() {
                         },
                         {
                           kind: "block",
+                          type: "frameCount",
+                        },
+                        {
+                          kind: "block",
+                          type: "saveImage",
+                        },
+                        {
+                          kind: "block",
+                          type: "saveGif",
+                        },
+                        {
+                          kind: "block",
                           type: "width",
                         },
                         {
@@ -187,6 +349,10 @@ function BlockEditor() {
                         {
                           kind: "block",
                           type: "mousePressed",
+                        },
+                        {
+                          kind: "block",
+                          type: "mouseDragged",
                         },
                         {
                           kind: "block",

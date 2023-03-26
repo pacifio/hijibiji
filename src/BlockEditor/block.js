@@ -37,6 +37,33 @@ Blockly.Blocks["noStroke"] = {
   },
 };
 
+Blockly.Blocks["saveImage"] = {
+  init: function () {
+    this.appendDummyInput().appendField("ইমেজ সেভ কর");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+Blockly.Blocks["saveGif"] = {
+  init: function () {
+    this.appendDummyInput().appendField("গিফ সেভ কর");
+    this.appendValueInput("s")
+      .setCheck("Number")
+      .appendField("কত সেকেন্ড চলবে");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(165);
+    this.setTooltip("একটি বৃত্ত আঁকি");
+    this.setHelpUrl("https://p5js.org/reference/#/p5/rotate");
+  },
+};
+
 Blockly.Blocks["translate"] = {
   init: function () {
     this.appendDummyInput().appendField("ট্রান্সলেট");
@@ -112,6 +139,16 @@ Blockly.Blocks["height"] = {
   },
 };
 
+Blockly.Blocks["frameCount"] = {
+  init: function () {
+    this.appendDummyInput().appendField("চলমান ফ্রেম");
+    this.setOutput(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
 Blockly.Blocks["mouseX"] = {
   init: function () {
     this.appendDummyInput().appendField("মাউস এক্স(x) এক্সিস");
@@ -133,6 +170,19 @@ Blockly.Blocks["mouseY"] = {
 };
 
 Blockly.Blocks["mousePressed"] = {
+  init: function () {
+    this.appendDummyInput().appendField("মাউস বাটন চাপ দিলে");
+    this.appendStatementInput("do").setCheck(null).appendField("চলবে");
+    this.setInputsInline(false);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip("মাউস চাপ দিলে কোড চলবে");
+    this.setHelpUrl("https://p5js.org/reference/#/p5/mousePressed");
+  },
+};
+
+Blockly.Blocks["mouseDragged"] = {
   init: function () {
     this.appendDummyInput().appendField("মাউস ধরে রাখলে");
     this.appendStatementInput("do").setCheck(null).appendField("চলবে");

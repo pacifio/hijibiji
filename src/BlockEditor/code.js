@@ -19,6 +19,12 @@ Blockly.JavaScript["mousePressed"] = function (block) {
   return code;
 };
 
+Blockly.JavaScript["mouseDragged"] = function (block) {
+  let statements_do = Blockly.JavaScript.statementToCode(block, "do");
+  let code = "p5.mouseDragged = () => {\n" + statements_do + "};\n";
+  return code;
+};
+
 Blockly.JavaScript["keyPressed"] = function (block) {
   let statements_do = Blockly.JavaScript.statementToCode(block, "do");
   let code = "p5.keyPressed = () => {\n" + statements_do + "};\n";
@@ -27,6 +33,22 @@ Blockly.JavaScript["keyPressed"] = function (block) {
 
 Blockly.JavaScript["noStroke"] = function (block) {
   let code = "p5.noStroke();\n";
+  return code;
+};
+
+Blockly.JavaScript["saveImage"] = function (block) {
+  let code = "p5.save('sketch.png');\n";
+  return code;
+};
+
+Blockly.JavaScript["saveGif"] = function (block) {
+  let value_s = Blockly.JavaScript.valueToCode(
+    block,
+    "s",
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+
+  let code = "p5.saveGif('sketch', " + value_s + ");\n";
   return code;
 };
 
@@ -86,6 +108,11 @@ Blockly.JavaScript["width"] = function (block) {
 
 Blockly.JavaScript["height"] = function (block) {
   let code = "p5.height";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript["frameCount"] = function (block) {
+  let code = "p5.frameCount";
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
