@@ -1,9 +1,18 @@
 import Blockly from "blockly";
 
 Blockly.JavaScript["setup"] = function (block) {
+  let value_mode = Blockly.JavaScript.valueToCode(
+    block,
+    "mode",
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
   let statements_do = Blockly.JavaScript.statementToCode(block, "do");
   let code =
-    "p5.setup = () => {\n  p5.createCanvas(CW, CH);\n" + statements_do + "};\n";
+    "p5.setup = () => {\n  p5.createCanvas(CW, CH," +
+    (value_mode ?? "p5.P2D") +
+    ");\n" +
+    statements_do +
+    "};\n";
   return code;
 };
 
@@ -13,9 +22,25 @@ Blockly.JavaScript["draw"] = function (block) {
   return code;
 };
 
+Blockly.JavaScript["mode2D"] = function (block) {
+  let code = "p5.P2D";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript["mode3D"] = function (block) {
+  let code = "p5.WEBGL";
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
 Blockly.JavaScript["mousePressed"] = function (block) {
   let statements_do = Blockly.JavaScript.statementToCode(block, "do");
   let code = "p5.mousePressed = () => {\n" + statements_do + "};\n";
+  return code;
+};
+
+Blockly.JavaScript["mouseReleased"] = function (block) {
+  let statements_do = Blockly.JavaScript.statementToCode(block, "do");
+  let code = "p5.mouseReleased = () => {\n" + statements_do + "};\n";
   return code;
 };
 
@@ -76,6 +101,39 @@ Blockly.JavaScript["rotate"] = function (block) {
   );
 
   let code = "p5.rotate(" + value_angle + ");\n";
+  return code;
+};
+
+Blockly.JavaScript["rotateX"] = function (block) {
+  let value_angle = Blockly.JavaScript.valueToCode(
+    block,
+    "angle",
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+
+  let code = "p5.rotateX(" + value_angle + ");\n";
+  return code;
+};
+
+Blockly.JavaScript["rotateY"] = function (block) {
+  let value_angle = Blockly.JavaScript.valueToCode(
+    block,
+    "angle",
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+
+  let code = "p5.rotateY(" + value_angle + ");\n";
+  return code;
+};
+
+Blockly.JavaScript["rotateZ"] = function (block) {
+  let value_angle = Blockly.JavaScript.valueToCode(
+    block,
+    "angle",
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+
+  let code = "p5.rotateZ(" + value_angle + ");\n";
   return code;
 };
 
@@ -201,6 +259,42 @@ Blockly.JavaScript["key_right"] = function (block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+Blockly.JavaScript["line"] = function (block) {
+  let value_x_1 = Blockly.JavaScript.valueToCode(
+    block,
+    "x1",
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+  let value_y_1 = Blockly.JavaScript.valueToCode(
+    block,
+    "y1",
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+
+  let value_x_2 = Blockly.JavaScript.valueToCode(
+    block,
+    "x2",
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+  let value_y_2 = Blockly.JavaScript.valueToCode(
+    block,
+    "y2",
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+
+  let code =
+    "p5.line(" +
+    value_x_1 +
+    "," +
+    value_y_1 +
+    "," +
+    value_x_2 +
+    "," +
+    value_y_2 +
+    ");\n";
+  return code;
+};
+
 Blockly.JavaScript["ellipse"] = function (block) {
   let value_x = Blockly.JavaScript.valueToCode(
     block,
@@ -233,6 +327,76 @@ Blockly.JavaScript["ellipse"] = function (block) {
     "," +
     value_h +
     ");\n";
+  return code;
+};
+
+Blockly.JavaScript["arc"] = function (block) {
+  let value_x = Blockly.JavaScript.valueToCode(
+    block,
+    "x",
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+  let value_y = Blockly.JavaScript.valueToCode(
+    block,
+    "y",
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+  let value_w = Blockly.JavaScript.valueToCode(
+    block,
+    "width",
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+  let value_h = Blockly.JavaScript.valueToCode(
+    block,
+    "height",
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+  let value_start = Blockly.JavaScript.valueToCode(
+    block,
+    "start",
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+  let value_stop = Blockly.JavaScript.valueToCode(
+    block,
+    "stop",
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+
+  let code =
+    "p5.arc(" +
+    value_x +
+    "," +
+    value_y +
+    "," +
+    value_w +
+    "," +
+    value_h +
+    "," +
+    value_start +
+    "," +
+    value_stop +
+    ");\n";
+  return code;
+};
+
+Blockly.JavaScript["circle"] = function (block) {
+  let value_x = Blockly.JavaScript.valueToCode(
+    block,
+    "x",
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+  let value_y = Blockly.JavaScript.valueToCode(
+    block,
+    "y",
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+  let value_r = Blockly.JavaScript.valueToCode(
+    block,
+    "r",
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+
+  let code = "p5.circle(" + value_x + "," + value_y + "," + value_r + ");\n";
   return code;
 };
 
@@ -319,6 +483,38 @@ Blockly.JavaScript["triangle"] = function (block) {
     "," +
     value_y_3 +
     ");\n";
+  return code;
+};
+
+Blockly.JavaScript["box"] = function (block) {
+  let value_w = Blockly.JavaScript.valueToCode(
+    block,
+    "width",
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+  let value_h = Blockly.JavaScript.valueToCode(
+    block,
+    "height",
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+
+  let code = "p5.box(" + value_w + "," + value_h + ");\n";
+  return code;
+};
+
+Blockly.JavaScript["cylinder"] = function (block) {
+  let value_w = Blockly.JavaScript.valueToCode(
+    block,
+    "width",
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+  let value_h = Blockly.JavaScript.valueToCode(
+    block,
+    "height",
+    Blockly.JavaScript.ORDER_ATOMIC
+  );
+
+  let code = "p5.cylinder(" + value_w + "," + value_h + ");\n";
   return code;
 };
 

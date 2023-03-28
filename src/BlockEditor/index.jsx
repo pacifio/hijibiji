@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-new-func */
-
 import "./block";
 import "./code";
 import "./Block.css";
@@ -280,6 +279,14 @@ function BlockEditor() {
                           kind: "block",
                           type: "draw",
                         },
+                        {
+                          kind: "block",
+                          type: "mode2D",
+                        },
+                        {
+                          kind: "block",
+                          type: "mode3D",
+                        },
                       ],
                     },
                     {
@@ -306,6 +313,18 @@ function BlockEditor() {
                         {
                           kind: "block",
                           type: "rotate",
+                        },
+                        {
+                          kind: "block",
+                          type: "rotateX",
+                        },
+                        {
+                          kind: "block",
+                          type: "rotateY",
+                        },
+                        {
+                          kind: "block",
+                          type: "rotateZ",
                         },
                         {
                           kind: "block",
@@ -345,6 +364,10 @@ function BlockEditor() {
                         {
                           kind: "block",
                           type: "mousePressed",
+                        },
+                        {
+                          kind: "block",
+                          type: "mouseReleased",
                         },
                         {
                           kind: "block",
@@ -418,12 +441,24 @@ function BlockEditor() {
                     },
                     {
                       kind: "category",
-                      name: "জ্যামিতি",
+                      name: "দ্বিমাত্রিক জ্যামিতি",
                       colour: "#37B24D",
                       contents: [
                         {
                           kind: "block",
+                          type: "line",
+                        },
+                        {
+                          kind: "block",
                           type: "ellipse",
+                        },
+                        {
+                          kind: "block",
+                          type: "arc",
+                        },
+                        {
+                          kind: "block",
+                          type: "circle",
                         },
                         {
                           kind: "block",
@@ -432,6 +467,21 @@ function BlockEditor() {
                         {
                           kind: "block",
                           type: "triangle",
+                        },
+                      ],
+                    },
+                    {
+                      kind: "category",
+                      name: "ত্রিমাত্রিক জ্যামিতি",
+                      colour: "#37B24D",
+                      contents: [
+                        {
+                          kind: "block",
+                          type: "box",
+                        },
+                        {
+                          kind: "block",
+                          type: "cylinder",
                         },
                       ],
                     },
