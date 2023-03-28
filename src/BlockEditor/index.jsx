@@ -17,6 +17,9 @@ import {
   Text,
   CopyButton,
   Textarea,
+  Indicator,
+  Divider,
+  Switch,
 } from "@mantine/core";
 import { BlocklyWorkspace } from "react-blockly";
 import Blockly from "blockly";
@@ -25,11 +28,13 @@ import {
   IconCheck,
   IconCode,
   IconEdit,
-  IconFile,
   IconFileImport,
   IconLayout2,
   IconPlayerPlayFilled,
+  IconSettings,
   IconShare,
+  IconThumbDown,
+  IconThumbUp,
   IconX,
 } from "@tabler/icons-react";
 import {
@@ -46,7 +51,7 @@ import loadInitXml from "./xml";
 import { useElementSize } from "@mantine/hooks";
 import p5 from "p5";
 import { showNotification } from "@mantine/notifications";
-import { openConfirmModal, openModal } from "@mantine/modals";
+import { openConfirmModal } from "@mantine/modals";
 
 function success(title) {
   showNotification({
@@ -77,13 +82,15 @@ const CodeImporter = forwardRef((props, ref) => {
 
 function BlockEditor() {
   let workspace;
-  let xml = loadInitXml();
+  let [xml, setXml] = useState(loadInitXml());
 
   const xmlImporter = useRef();
 
   const [code, setCode] = useState("");
   const [activeTab, setActiveTab] = useState("block");
   const { ref, width, height } = useElementSize();
+
+  const [showDimensions, setShowDimensions] = useState(true);
 
   const genCode = useCallback(() => {
     if (workspace) {
@@ -125,6 +132,12 @@ function BlockEditor() {
                 <Tabs.Tab value="tutorial" icon={<IconBook size="0.8rem" />}>
                   টিউটরিয়াল
                 </Tabs.Tab>
+                <Tabs.Tab
+                  value="settings"
+                  icon={<IconSettings size="0.8rem" />}
+                >
+                  সেটিংস
+                </Tabs.Tab>
               </Tabs.List>
               <Button.Group>
                 <Button
@@ -149,11 +162,11 @@ function BlockEditor() {
                       labels: { confirm: "ইমপোর্ট", cancel: "বাতিল" },
                       onConfirm: () => {
                         if (xmlImporter.current) {
-                          const code = xmlImporter.current.getInput();
-                          if (code) {
+                          const inputCode = xmlImporter.current.getInput();
+                          if (inputCode) {
                             const parser = new DOMParser();
                             const parsed = parser.parseFromString(
-                              code,
+                              inputCode,
                               "text/xml"
                             );
                             if (workspace) {
@@ -170,23 +183,6 @@ function BlockEditor() {
                   }}
                 >
                   ইমপোর্ট
-                </Button>
-                <Button
-                  color="violet"
-                  variant="subtle"
-                  size="xs"
-                  leftIcon={
-                    <ThemeIcon color="violet" variant="light" radius="xl">
-                      <IconFile size={12} />
-                    </ThemeIcon>
-                  }
-                  radius="xl"
-                  onClick={() => {
-                    if (xml) {
-                    }
-                  }}
-                >
-                  ফাইল সেভ
                 </Button>
                 <Button
                   color="blue"
@@ -254,7 +250,7 @@ function BlockEditor() {
                 className="view-full"
                 onWorkspaceChange={(w) => (workspace = w)}
                 initialXml={xml}
-                onXmlChange={(x) => (xml = x)}
+                onXmlChange={setXml}
                 workspaceConfiguration={{
                   grid: {
                     spacing: 20,
@@ -665,17 +661,43 @@ function BlockEditor() {
                 টিউটরিয়াল আসছে !
               </Text>
             </Tabs.Panel>
+
+            <Tabs.Panel value="settings" className="view-full">
+              <Text color="dimmed" weight="bold">
+                হিজিবিজি এডিটর সেটিংস
+              </Text>
+              <Divider mt={2} />
+              <Box py="sm" px="xs">
+                <Switch
+                  size="md"
+                  onLabel={<IconThumbUp size="1rem" stroke={2.5} />}
+                  offLabel={<IconThumbDown size="1rem" stroke={2.5} />}
+                  color="green"
+                  label="ক্যানভাসের পরিমাপ সো / হাইড কর"
+                  checked={showDimensions}
+                  onChange={(event) =>
+                    setShowDimensions(event.currentTarget.checked)
+                  }
+                />
+              </Box>
+            </Tabs.Panel>
           </Tabs>
         </Grid.Col>
         <Grid.Col span={6}>
-          <Preview sketch={code} sizeRef={ref} />
+          <Preview
+            sketch={code}
+            sizeRef={ref}
+            width={width}
+            height={height}
+            showDimensions={showDimensions}
+          />
         </Grid.Col>
       </Grid>
     </Box>
   );
 }
 
-function Preview({ sketch, sizeRef }) {
+function Preview({ sketch, sizeRef, width, height, showDimensions }) {
   const p5Container = useRef();
 
   useEffect(() => {
@@ -699,13 +721,21 @@ function Preview({ sketch, sizeRef }) {
   return (
     <Paper withBorder ref={sizeRef} w="100%" h="100%" radius={0}>
       {sketch ? (
-        <div
-          style={{
-            width: "100%",
-            height: "100%",
-          }}
-          ref={p5Container}
-        ></div>
+        <Indicator
+          label={`দৈর্ঘ্য ${width} প্রস্থ ${height}`}
+          position="bottom-center"
+          size={30}
+          offset={20}
+          disabled={!showDimensions}
+        >
+          <div
+            style={{
+              width: "100%",
+              height: "100%",
+            }}
+            ref={p5Container}
+          ></div>
+        </Indicator>
       ) : (
         <Center h="100%">
           <Text>স্কেচ দেখতে কোড রান করুন</Text>
