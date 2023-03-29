@@ -11,9 +11,7 @@ import {
   Tooltip,
 } from "@mantine/core";
 import {
-  IconBrandFacebook,
   IconBrandGithub,
-  IconBrandYoutube,
   IconMaximize,
   IconMinimize,
   IconQuestionMark,
@@ -65,6 +63,7 @@ export default function Navbar() {
           >
             <Button
               size="xs"
+              radius="xl"
               leftIcon={fullscreen ? <IconMinimize /> : <IconMaximize />}
               variant="light"
               color="cyan"
@@ -74,56 +73,39 @@ export default function Navbar() {
             </Button>
           </Tooltip>
           <VerticalDivider height={30} />
-          <Button.Group>
-            <Button
-              onClick={() => window.open("", "_blank")}
-              size="xs"
-              leftIcon={<IconBrandYoutube />}
-              variant="light"
-              color="red"
-            >
-              ইউটিউব
-            </Button>
-            <Button
-              onClick={() => window.open("", "_blank")}
-              size="xs"
-              leftIcon={<IconBrandFacebook />}
-              variant="light"
-              color="blue"
-            >
-              ফেসবুক
-            </Button>
-            <Button
-              onClick={() =>
-                window.open("https://github.com/pacifio/hijibiji", "_blank")
-              }
-              size="xs"
-              leftIcon={<IconBrandGithub />}
-              variant="light"
-              color="gray"
-            >
-              গিটহাব
-            </Button>
-          </Button.Group>
-          <Tooltip label="হিজিবিজির ব্যাপারে" position="bottom" withArrow>
-            <ActionIcon
-              variant="light"
-              color="blue"
-              radius="xl"
-              onClick={() => {
-                openModal({
-                  title: "হিজিবিজির ব্যাপারে",
-                  children: <About />,
-                  padding: "xs",
-                  size: "md",
-                  overlayOpacity: 0.55,
-                  overlayBlur: 3,
-                });
-              }}
-            >
-              <IconQuestionMark />
-            </ActionIcon>
-          </Tooltip>
+          <Group>
+            <Tooltip label="হিজিবিজির কোড" position="bottom" withArrow>
+              <ActionIcon
+                variant="light"
+                color="gray"
+                radius="xl"
+                onClick={() => {
+                  window.open("https://github.com/pacifio/hijibiji", "_blank");
+                }}
+              >
+                <IconBrandGithub />
+              </ActionIcon>
+            </Tooltip>
+            <Tooltip label="হিজিবিজির ব্যাপারে" position="bottom" withArrow>
+              <ActionIcon
+                variant="light"
+                color="blue"
+                radius="xl"
+                onClick={() => {
+                  openModal({
+                    title: "হিজিবিজির ব্যাপারে",
+                    children: <About />,
+                    padding: "xs",
+                    size: "md",
+                    overlayOpacity: 0.55,
+                    overlayBlur: 3,
+                  });
+                }}
+              >
+                <IconQuestionMark />
+              </ActionIcon>
+            </Tooltip>
+          </Group>
         </Group>
       </Group>
     </Header>

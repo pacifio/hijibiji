@@ -19,13 +19,16 @@ import {
   Indicator,
   Divider,
   Switch,
+  Anchor,
+  ActionIcon,
+  Tooltip,
 } from "@mantine/core";
 import { BlocklyWorkspace } from "react-blockly";
 import Blockly from "blockly";
 import {
-  IconBook,
   IconCheck,
   IconCode,
+  IconDownload,
   IconEdit,
   IconFileImport,
   IconLayout2,
@@ -51,6 +54,8 @@ import { useElementSize } from "@mantine/hooks";
 import p5 from "p5";
 import { showNotification } from "@mantine/notifications";
 import { openConfirmModal } from "@mantine/modals";
+import { generateHtml } from "./htmlgen";
+import { saveAs } from "file-saver";
 
 function success(title) {
   showNotification({
@@ -127,9 +132,6 @@ function BlockEditor() {
                 </Tabs.Tab>
                 <Tabs.Tab value="script" icon={<IconCode size="0.8rem" />}>
                   স্ক্রিপ্ট
-                </Tabs.Tab>
-                <Tabs.Tab value="tutorial" icon={<IconBook size="0.8rem" />}>
-                  টিউটরিয়াল
                 </Tabs.Tab>
                 <Tabs.Tab
                   value="settings"
@@ -279,14 +281,6 @@ function BlockEditor() {
                           kind: "block",
                           type: "draw",
                         },
-                        {
-                          kind: "block",
-                          type: "mode2D",
-                        },
-                        {
-                          kind: "block",
-                          type: "mode3D",
-                        },
                       ],
                     },
                     {
@@ -316,18 +310,6 @@ function BlockEditor() {
                         },
                         {
                           kind: "block",
-                          type: "rotateX",
-                        },
-                        {
-                          kind: "block",
-                          type: "rotateY",
-                        },
-                        {
-                          kind: "block",
-                          type: "rotateZ",
-                        },
-                        {
-                          kind: "block",
                           type: "frameCount",
                         },
                         {
@@ -345,6 +327,18 @@ function BlockEditor() {
                         {
                           kind: "block",
                           type: "height",
+                        },
+                        {
+                          kind: "block",
+                          type: "mousePositionDebug",
+                        },
+                        {
+                          kind: "block",
+                          type: "mouseGrid",
+                        },
+                        {
+                          kind: "block",
+                          type: "clear",
                         },
                       ],
                     },
@@ -441,7 +435,7 @@ function BlockEditor() {
                     },
                     {
                       kind: "category",
-                      name: "দ্বিমাত্রিক জ্যামিতি",
+                      name: "জ্যামিতি",
                       colour: "#37B24D",
                       contents: [
                         {
@@ -467,21 +461,6 @@ function BlockEditor() {
                         {
                           kind: "block",
                           type: "triangle",
-                        },
-                      ],
-                    },
-                    {
-                      kind: "category",
-                      name: "ত্রিমাত্রিক জ্যামিতি",
-                      colour: "#37B24D",
-                      contents: [
-                        {
-                          kind: "block",
-                          type: "box",
-                        },
-                        {
-                          kind: "block",
-                          type: "cylinder",
                         },
                       ],
                     },
@@ -632,6 +611,14 @@ function BlockEditor() {
                       contents: [
                         {
                           kind: "block",
+                          type: "textCanvas",
+                        },
+                        {
+                          kind: "block",
+                          type: "textSize",
+                        },
+                        {
+                          kind: "block",
                           type: "text",
                         },
                         {
@@ -700,16 +687,8 @@ function BlockEditor() {
 
             <Tabs.Panel value="script" className="view-full">
               <Paper withBorder mt={12} shadow="sm" radius={0}>
-                <Prism language="javascript" withLineNumbers>
-                  {code}
-                </Prism>
+                <ViewCode code={code} />
               </Paper>
-            </Tabs.Panel>
-
-            <Tabs.Panel value="tutorial" className="view-full">
-              <Text color="dimmed" weight="bold">
-                টিউটরিয়াল আসছে !
-              </Text>
             </Tabs.Panel>
 
             <Tabs.Panel value="settings" className="view-full">
@@ -753,7 +732,7 @@ function Preview({ sketch, sizeRef, width, height, showDimensions }) {
   useEffect(() => {
     let p5Instance;
     try {
-      p5Instance = new p5(new Function("p5", sketch), p5Container.current);
+      p5Instance = new p5(new Function("p", sketch), p5Container.current);
     } catch (_) {
       showNotification({
         title: "স্কেচে ভুল আছে",
@@ -792,6 +771,42 @@ function Preview({ sketch, sizeRef, width, height, showDimensions }) {
         </Center>
       )}
     </Paper>
+  );
+}
+
+function ViewCode({ code }) {
+  const htmlCode = generateHtml(code);
+  return (
+    <Box>
+      <Group position="apart" p="xs">
+        <Group position="left">
+          <Anchor href="https://javascript.info/" target="_blank" size="xs">
+            জাভাস্ক্রিপ্ট শিখি
+          </Anchor>
+          <Anchor href="https://p5js.org/learn/" target="_blank" size="xs">
+            প্রসেসিং শিখি
+          </Anchor>
+        </Group>
+        <Group position="right">
+          <Tooltip label="কোড ডাউনলোড করি" position="left-start" withArrow>
+            <ActionIcon
+              onClick={() => {
+                const blob = new Blob([htmlCode], {
+                  type: "text/plain;charset=utf-8",
+                });
+                saveAs(blob, "sketch.html");
+              }}
+              size="xs"
+            >
+              <IconDownload />
+            </ActionIcon>
+          </Tooltip>
+        </Group>
+      </Group>
+      <Prism language="html" withLineNumbers>
+        {htmlCode}
+      </Prism>
+    </Box>
   );
 }
 

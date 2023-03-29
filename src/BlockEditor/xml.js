@@ -6,9 +6,6 @@ const loadInitXml = () => {
     return `
     <xml xmlns="http://www.w3.org/1999/xhtml">
       <block type="setup">
-        <value name="mode">
-          <block type="mode2D"></block>
-        </value>
         <statement name="do">
           <block type="background">
             <value name="NAME">

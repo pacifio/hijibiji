@@ -22,7 +22,7 @@ export default function App() {
             header={<Navbar />}
             padding={0}
             styles={(theme) => ({
-              main: {
+              "*": {
                 backgroundColor: theme.colors.dark[8],
               },
             })}

@@ -3,7 +3,6 @@ import Blockly from "blockly";
 Blockly.Blocks["setup"] = {
   init: function () {
     this.appendDummyInput().appendField("সেটআপ");
-    this.appendValueInput("mode").setCheck(null).appendField("জ্যামিতিক মোড");
     this.appendStatementInput("do").setCheck(null).appendField("চলবে");
     this.setInputsInline(false);
     this.setPreviousStatement(true, null);
@@ -21,26 +20,6 @@ Blockly.Blocks["draw"] = {
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
-    this.setTooltip("");
-    this.setHelpUrl("");
-  },
-};
-
-Blockly.Blocks["mode2D"] = {
-  init: function () {
-    this.appendDummyInput().appendField("দ্বিমাত্রিক মোড");
-    this.setOutput(true, null);
-    this.setColour(290);
-    this.setTooltip("");
-    this.setHelpUrl("");
-  },
-};
-
-Blockly.Blocks["mode3D"] = {
-  init: function () {
-    this.appendDummyInput().appendField("ত্রিমাত্রিক মোড");
-    this.setOutput(true, null);
-    this.setColour(290);
     this.setTooltip("");
     this.setHelpUrl("");
   },
@@ -104,45 +83,6 @@ Blockly.Blocks["translate"] = {
 Blockly.Blocks["rotate"] = {
   init: function () {
     this.appendDummyInput().appendField("রোটেট");
-    this.appendValueInput("angle").setCheck("Number").appendField("অ্যাংগেল");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(165);
-    this.setTooltip("একটি বৃত্ত আঁকি");
-    this.setHelpUrl("https://p5js.org/reference/#/p5/rotate");
-  },
-};
-
-Blockly.Blocks["rotateX"] = {
-  init: function () {
-    this.appendDummyInput().appendField("রোটেট এক্স এক্সিস");
-    this.appendValueInput("angle").setCheck("Number").appendField("অ্যাংগেল");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(165);
-    this.setTooltip("একটি বৃত্ত আঁকি");
-    this.setHelpUrl("https://p5js.org/reference/#/p5/rotate");
-  },
-};
-
-Blockly.Blocks["rotateY"] = {
-  init: function () {
-    this.appendDummyInput().appendField("রোটেট য় এক্সিস");
-    this.appendValueInput("angle").setCheck("Number").appendField("অ্যাংগেল");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(165);
-    this.setTooltip("একটি বৃত্ত আঁকি");
-    this.setHelpUrl("https://p5js.org/reference/#/p5/rotate");
-  },
-};
-
-Blockly.Blocks["rotateZ"] = {
-  init: function () {
-    this.appendDummyInput().appendField("রোটেট জেড এক্সিস");
     this.appendValueInput("angle").setCheck("Number").appendField("অ্যাংগেল");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
@@ -538,34 +478,6 @@ Blockly.Blocks["triangle"] = {
   },
 };
 
-Blockly.Blocks["box"] = {
-  init: function () {
-    this.appendDummyInput().appendField("ঘনক");
-    this.appendValueInput("width").setCheck("Number").appendField("দৈর্ঘ্য");
-    this.appendValueInput("height").setCheck("Number").appendField("প্রস্থ");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(165);
-    this.setTooltip("একটি ত্রিভুজ আঁকি");
-    this.setHelpUrl("https://p5js.org/reference/#/p5/triangle");
-  },
-};
-
-Blockly.Blocks["cylinder"] = {
-  init: function () {
-    this.appendDummyInput().appendField("সিলিন্ডার");
-    this.appendValueInput("width").setCheck("Number").appendField("দৈর্ঘ্য");
-    this.appendValueInput("height").setCheck("Number").appendField("প্রস্থ");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(165);
-    this.setTooltip("একটি ত্রিভুজ আঁকি");
-    this.setHelpUrl("https://p5js.org/reference/#/p5/triangle");
-  },
-};
-
 Blockly.Blocks["background"] = {
   init: function () {
     this.appendDummyInput().appendField("ব্যাকগ্রাউন্ড");
@@ -589,5 +501,71 @@ Blockly.Blocks["fill"] = {
     this.setColour(0);
     this.setTooltip("");
     this.setHelpUrl("https://p5js.org/reference/#/p5/fill");
+  },
+};
+
+Blockly.Blocks["textCanvas"] = {
+  init: function () {
+    this.appendDummyInput().appendField("ক্যানভাসে লিখি");
+    this.appendValueInput("text").setCheck("String").appendField("টেক্সট");
+    this.appendValueInput("x")
+      .setCheck("Number")
+      .appendField("এক্স (x) এক্সিস");
+    this.appendValueInput("y").setCheck("Number").appendField("য় (y) এক্সিস");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(0);
+    this.setTooltip("");
+    this.setHelpUrl("https://p5js.org/reference/#/p5/fill");
+  },
+};
+
+Blockly.Blocks["textSize"] = {
+  init: function () {
+    this.appendDummyInput().appendField("লিখার সাইজ");
+    this.appendValueInput("size").setCheck("Number").appendField("সাইজ");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(0);
+    this.setTooltip("");
+    this.setHelpUrl("https://p5js.org/reference/#/p5/fill");
+  },
+};
+
+Blockly.Blocks["mousePositionDebug"] = {
+  init: function () {
+    this.appendDummyInput().appendField("মাউস পজিশন বের কর");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+Blockly.Blocks["mouseGrid"] = {
+  init: function () {
+    this.appendDummyInput().appendField("মাউস গ্রিড দেখো");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+};
+
+Blockly.Blocks["clear"] = {
+  init: function () {
+    this.appendDummyInput().appendField("ক্যানভাস ক্লিয়ার কর");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(290);
+    this.setTooltip("");
+    this.setHelpUrl("");
   },
 };
