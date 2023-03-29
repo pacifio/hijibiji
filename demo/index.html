@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আমার স্কেচ</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.6.0/lib/p5.js"></script>
+  </head>
+
+  <body>
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+    <script defer>
+      let sketch = function(p) {
+        var i;
+
+
+        p.setup = () => {
+          p.createCanvas(943, 905.59375);
+          p.background('#1a1a1e');
+        };
+        p.draw = () => {
+          p.fill('#ff99ff');
+          p.translate(((p.width) / 2), ((p.height) / 2));
+          for (i = 1; i <= 10; i++) {
+            p.ellipse((p.mouseX), (p.mouseY), 100, 400);
+            p.rotate((Math.PI / 5));
+          }
+        };
+      };
+      new p5(sketch);
+    </script>
+  </body>
+
+</html>
