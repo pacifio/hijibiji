@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/hijibiji/static/css/main.0992a649.chunk.css",
+    "main.js": "/hijibiji/static/js/main.042b779b.chunk.js",
+    "main.js.map": "/hijibiji/static/js/main.042b779b.chunk.js.map",
+    "runtime-main.js": "/hijibiji/static/js/runtime-main.3ae88d2a.js",
+    "runtime-main.js.map": "/hijibiji/static/js/runtime-main.3ae88d2a.js.map",
+    "static/js/2.883825f4.chunk.js": "/hijibiji/static/js/2.883825f4.chunk.js",
+    "static/js/2.883825f4.chunk.js.map": "/hijibiji/static/js/2.883825f4.chunk.js.map",
+    "static/js/3.ad2cb9f5.chunk.js": "/hijibiji/static/js/3.ad2cb9f5.chunk.js",
+    "static/js/3.ad2cb9f5.chunk.js.map": "/hijibiji/static/js/3.ad2cb9f5.chunk.js.map",
+    "index.html": "/hijibiji/index.html",
+    "static/css/main.0992a649.chunk.css.map": "/hijibiji/static/css/main.0992a649.chunk.css.map",
+    "static/js/2.883825f4.chunk.js.LICENSE.txt": "/hijibiji/static/js/2.883825f4.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3ae88d2a.js",
+    "static/js/2.883825f4.chunk.js",
+    "static/css/main.0992a649.chunk.css",
+    "static/js/main.042b779b.chunk.js"
+  ]
+}

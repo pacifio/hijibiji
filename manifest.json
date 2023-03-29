@@ -1,0 +1,8 @@
+{
+  "short_name": "হিজিবিজি এডিটর",
+  "name": "হিজিবিজি একটি ভিসুয়াল প্রোগ্রামিং এডিটর",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
